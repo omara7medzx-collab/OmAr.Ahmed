@@ -90,121 +90,139 @@
         </div>
     </section>
     <section>
-        <div class="data-container" id="dataContainer">
-            <div class="data-header">
-                <h1>info </h1>
-                <p></p>
+
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background: #111;
+                color: #fff;
+                direction: rtl;
+            }
+            
+            .data-container {
+                width: 100%;
+                max-width: 600px;
+                margin: 40px auto;
+                background: rgba(0, 0, 0, 0.4);
+                border-radius: 15px;
+                padding: 20px;
+                box-shadow: 0 0 20px rgb(0, 183, 255);
+                transition: 0.5s;
+            }
+            
+            .data-container:hover {
+                scale: 1.05;
+            }
+            
+            .data-container h2 {
+                text-align: center;
+                margin-bottom: 20px;
+                color: #00b7ff;
+            }
+            
+            .input-group input,
+            .input-group textarea {
+                width: 100%;
+                padding: 12px;
+                margin-bottom: 15px;
+                border-radius: 8px;
+                border: 1px solid rgba(255, 255, 255, 0.4);
+                background: rgba(255, 255, 255, 0.1);
+                color: #fff;
+                font-size: 15px;
+                resize: none;
+            }
+            
+            .input-group input::placeholder,
+            .input-group textarea::placeholder {
+                color: #bbb;
+            }
+            
+            .login-button {
+                width: 100%;
+                padding: 12px;
+                border-radius: 8px;
+                background: linear-gradient(45deg, #667eea, #764ba2);
+                border: none;
+                color: #fff;
+                font-weight: 600;
+                cursor: pointer;
+                transition: 0.3s;
+                font-size: 16px;
+            }
+            
+            .login-button:hover {
+                transform: scale(1.05);
+            }
+            
+            .social-icons {
+                text-align: center;
+                margin-top: 20px;
+            }
+            
+            .social-icons a {
+                font-size: 30px;
+                margin: 0 10px;
+                color: rgb(0, 181, 253);
+                transition: 0.3s;
+                text-decoration: none;
+            }
+            
+            .social-icons a:hover {
+                color: red;
+                transform: scale(1.2);
+            }
+        </style>
+
+
+
+
+        <div class="data-container">
+            <h2>info</h2>
+
+            <div class="input-group">
+                <input id="name" placeholder="👤 اكتب اسمك" />
             </div>
 
-            <form>
-                <div class="input-group">
-                    <input type="Name" id="dataName" placeholder="Name" required>
-                    <i class="fas fa-user-group"></i>
-                </div>
+            <div class="input-group">
+                <input id="number" placeholder="📞 رقم الهاتف" />
+            </div>
 
-                <div class="input-group">
-                    <input type="text" id="number" placeholder="Whats App Nubmr" required>
-                    <i class="fa-solid fa-phone"></i>
-                </div>
+            <div class="input-group">
+                <textarea id="message" rows="4" placeholder="💬 اقدر اساعدك ازي"></textarea>
+            </div>
 
-                <div class="input-group">
-                    <input type="text" id="what" placeholder="اقدر اساعدك ازاي" required>
-                    <i class="fa-solid fa-face-thinking"></i>
-                </div>
+            <button class="login-button" id="sendBtn">submit</button>
 
 
-                <div id="errorMessage" class="error-message" style="display: none;">
-                    <i class="fas fa-exclamation-circle"></i>
-                    <span id="errorText"></span>
-                </div>
+        </div>
 
-                <button type="submit" class="login-button">Submit</button>
+        <script>
+            document.getElementById('sendBtn').addEventListener('click', function() {
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const msg = document.getElementById('message').value.trim();
 
-                <style>
-                    .message {
-                        padding: 12px 20px;
-                        border-radius: 8px;
-                        margin: 10px 0;
-                        display: flex;
-                        align-items: center;
-                        font-size: 14px;
-                        font-weight: 500;
-                        transition: all 0.3s ease;
-                        opacity: 0.95;
-                        border: 1px solid transparent;
-                    }
-                    
-                    .message i {
-                        margin-right: 10px;
-                        font-size: 18px;
-                    }
-                    
-                    .error-message {
-                        background: rgba(255, 76, 48, 0.1);
-                        color: #ff4c30;
-                        padding: 14px 18px;
-                        border-radius: 12px;
-                        margin: 0 0 20px 0;
-                        display: flex;
-                        align-items: center;
-                        gap: 12px;
-                        font-size: 14px;
-                        border: 2px solid transparent;
-                        animation: slideDown 0.4s cubic-bezier(0.16, 1, 0.3, 1), pulseBorder 2s infinite;
-                        box-shadow: 0 2px 15px rgba(255, 76, 48, 0.1);
-                        backdrop-filter: blur(4px);
-                        transition: all 0.3s ease;
-                    }
-                    
-                    .error-message i {
-                        font-size: 20px;
-                        color: #ff4c30;
-                        flex-shrink: 0;
-                    }
-                    
-                    @keyframes slideDown {
-                        from {
-                            opacity: 0;
-                            transform: translateY(-15px);
-                        }
-                        to {
-                            opacity: 1;
-                            transform: translateY(0);
-                        }
-                    }
-                    
-                    @keyframes pulseBorder {
-                        0% {
-                            border-color: rgba(255, 76, 48, 0.2);
-                            box-shadow: 0 0 0 0 rgba(255, 76, 48, 0.7);
-                        }
-                        70% {
-                            border-color: rgba(255, 76, 48, 0.1);
-                            box-shadow: 0 0 0 6px rgba(255, 76, 48, 0);
-                        }
-                        100% {
-                            border-color: rgba(255, 76, 48, 0.2);
-                            box-shadow: 0 0 0 0 rgba(255, 76, 48, 0);
-                        }
-                    }
-                    
-                    .error-message.fade-out {
-                        animation: fadeOut 0.5s ease-out forwards, slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-                    }
-                    
-                    @keyframes fadeOut {
-                        to {
-                            opacity: 0;
-                        }
-                    }
-                    
-                    @keyframes slideUp {
-                        to {
-                            transform: translateY(-10px);
-                        }
-                    }
-                </style>
-            </form>
+                let text = "📌 طلب جديد من الموقع\n\n";
+                if (name) text += "👤 الاسم: " + name + "\n";
+                if (email) text += "📧 رقم التلفون: " + email + "\n";
+                if (msg) text += "💬 الرسالة: " + msg + "\n";
+                text += "\n 📌طلب جديد من الموقع: " + location.href;
+
+                const encoded = encodeURIComponent(text);
+
+                // الرقم بتاعك
+                const phone = "201200264971";
+
+                const url = `https://wa.me/${phone}?text=${encoded}`;
+                window.open(url, "_blank");
+            });
+        </script>
+
+
+
+
+
     </section>
     <section id="contact">
         <div class="social-icons">
@@ -217,7 +235,30 @@
 
 
 
-    <script src="js.js"></script>
+    <script>
+        document.getElementById('sendBtn').addEventListener('click', function() {
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('number').value.trim();
+            const msg = document.getElementById('message').value.trim();
+
+            // صياغة الرسالة
+            let text = "";
+            if (name) text += "الاسم: " + name + "\n";
+            if (email) text += "رقم الهاتف:" + email + "\n";
+            if (msg) text += "الرسالة: " + msg + "\n";
+
+
+            const encoded = encodeURIComponent(text);
+
+            // الرقم بتاعك ثابت هنا
+            const phone = "201200264971";
+
+            // الرابط النهائي
+            const url = `https://wa.me/${phone}?text=${encoded}`;
+
+            window.open(url, "_blank");
+        });
+    </script>
 
 
 </body>
